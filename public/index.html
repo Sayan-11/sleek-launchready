@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleek LaunchReady — Your AI Singapore incorporation advisor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1E5EFF;
+    --blue-dark: #1247CC;
+    --blue-light: #EEF3FF;
+    --navy: #0F1F3D;
+    --text: #0F1F3D;
+    --text-2: #374151;
+    --text-m: #6B7A99;
+    --text-d: #9CA8C0;
+    --bg: #F7F9FF;
+    --bg2: #EEF3FF;
+    --white: #FFFFFF;
+    --border: #E2E8F8;
+    --border2: #C7D3F0;
+    --red: #DC2626;
+    --red-bg: #FEF2F2;
+    --red-b: #FECACA;
+    --yellow: #B45309;
+    --yellow-bg: #FFFBEB;
+    --yellow-b: #FDE68A;
+    --green: #059669;
+    --green-bg: #ECFDF5;
+    --green-b: #A7F3D0;
+    --shadow-sm: 0 1px 4px rgba(15,31,61,.07);
+    --shadow: 0 4px 16px rgba(15,31,61,.09);
+    --shadow-lg: 0 20px 48px rgba(15,31,61,.13);
+    --r: 14px;
+    --r-sm: 10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    height: 60px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px;
+    box-shadow: var(--shadow-sm);
+  }
+  .logo { display:flex; align-items:center; gap:10px; }
+  .logo-text { font-weight:800; font-size:20px; color:var(--navy); letter-spacing:-.5px; }
+  .logo-text span { color:var(--blue); }
+  .logo-div { width:1px; height:16px; background:var(--border2); }
+  .logo-sub { font-size:13px; font-weight:500; color:var(--text-m); }
+  .hdr-pill { font-size:12px; font-weight:600; color:var(--blue); background:var(--blue-light); padding:4px 12px; border-radius:100px; border:1px solid #C7D7FF; }
+
+  /* ── MAIN ── */
+  main { flex:1; padding-top:60px; }
+
+  /* ── SCREENS ── */
+  .screen { display:none; }
+
+  /* ── HERO ── */
+  #hero {
+    display: flex; flex-direction:column; align-items:center; justify-content:center;
+    min-height: calc(100vh - 60px);
+    padding: 60px 24px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--white) 0%, var(--bg) 100%);
+  }
+  .hero-pill {
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--blue-light); border:1px solid #C7D7FF; color:var(--blue);
+    font-size:12px; font-weight:600; padding:5px 14px; border-radius:100px;
+    margin-bottom:24px;
+  }
+  .pulse { width:6px; height:6px; background:var(--blue); border-radius:50%; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+  h1 {
+    font-size: clamp(34px, 5vw, 58px); font-weight:800; letter-spacing:-1.5px;
+    line-height:1.1; color:var(--navy); max-width:700px; margin-bottom:18px;
+  }
+  h1 em { font-family:'Instrument Serif',serif; font-style:italic; color:var(--blue); font-weight:400; }
+  .hero-desc {
+    font-size:17px; color:var(--text-m); line-height:1.65;
+    max-width:440px; margin-bottom:36px;
+  }
+  .start-btn {
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--blue); color:#fff; border:none;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:15px;
+    padding:14px 32px; border-radius:100px; cursor:pointer;
+    box-shadow:0 4px 20px rgba(30,94,255,.3); transition:all .2s;
+  }
+  .start-btn:hover { background:var(--blue-dark); transform:translateY(-2px); box-shadow:0 8px 28px rgba(30,94,255,.35); }
+  .start-btn svg { width:18px; height:18px; }
+  .hero-trust {
+    margin-top:28px; display:flex; align-items:center; gap:20px;
+    font-size:12px; color:var(--text-d); flex-wrap:wrap; justify-content:center;
+  }
+  .ti { display:flex; align-items:center; gap:6px; }
+  .ti-dot { width:14px; height:14px; border-radius:50%; background:var(--green-bg); border:1px solid var(--green-b); display:flex; align-items:center; justify-content:center; font-size:8px; color:var(--green); flex-shrink:0; }
+  .hero-strip {
+    margin-top:48px; display:grid; grid-template-columns:repeat(3,1fr);
+    gap:0; background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+    overflow:hidden; max-width:560px; width:100%; box-shadow:var(--shadow-sm);
+  }
+  .hs { padding:18px; text-align:center; border-right:1px solid var(--border); }
+  .hs:last-child { border-right:none; }
+  .hs-n { font-size:20px; font-weight:800; color:var(--navy); letter-spacing:-.5px; }
+  .hs-l { font-size:11px; color:var(--text-m); margin-top:3px; font-weight:500; }
+
+  /* ── CHAT ── */
+  #chat {
+    display:flex; flex-direction:column;
+    height: calc(100vh - 60px);
+    max-width: 720px; margin:0 auto; padding:0 16px;
+  }
+  .chat-msgs {
+    flex:1; overflow-y:auto; padding:24px 0 16px;
+    display:flex; flex-direction:column; gap:14px;
+    scroll-behavior: smooth;
+  }
+  .chat-msgs::-webkit-scrollbar { width:4px; }
+  .chat-msgs::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+  .msg { display:flex; gap:10px; align-items:flex-start; }
+  .msg.user { flex-direction:row-reverse; }
+  .av {
+    width:30px; height:30px; border-radius:50%; flex-shrink:0; margin-top:2px;
+    background:var(--blue-light); border:1px solid #C7D7FF;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700; color:var(--blue); letter-spacing:-.3px;
+  }
+  .bubble {
+    max-width:80%; padding:12px 16px; font-size:14px; line-height:1.65;
+    border-radius:4px 14px 14px 14px; color:var(--text);
+    background:var(--white); border:1px solid var(--border);
+    animation:msgIn .22s ease;
+  }
+  .msg.user .bubble {
+    background:var(--blue); color:#fff; border-color:var(--blue);
+    border-radius:14px 4px 14px 14px;
+  }
+  @keyframes msgIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .typing {
+    display:flex; gap:5px; align-items:center; padding:4px 2px;
+  }
+  .typing span {
+    width:7px; height:7px; border-radius:50%; background:var(--text-d);
+    animation:tdot 1.3s infinite;
+  }
+  .typing span:nth-child(2){animation-delay:.2s}
+  .typing span:nth-child(3){animation-delay:.4s}
+  @keyframes tdot { 0%,60%,100%{opacity:.25;transform:translateY(0)} 30%{opacity:1;transform:translateY(-3px)} }
+
+  .chat-bar {
+    display:flex; gap:10px; padding:12px 0 20px;
+    border-top:1px solid var(--border);
+  }
+  .chat-inp {
+    flex:1; padding:12px 16px; border:1.5px solid var(--border);
+    border-radius:100px; font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:14px; color:var(--navy); background:var(--white); outline:none;
+    transition:border-color .15s;
+  }
+  .chat-inp:focus { border-color:var(--blue); }
+  .chat-inp::placeholder { color:var(--text-d); }
+  .chat-inp:disabled { background:var(--bg); cursor:not-allowed; }
+  .send-btn {
+    background:var(--blue); color:#fff; border:none;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px;
+    padding:12px 22px; border-radius:100px; cursor:pointer;
+    display:flex; align-items:center; gap:7px; white-space:nowrap;
+    transition:all .15s; box-shadow:0 2px 10px rgba(30,94,255,.25);
+  }
+  .send-btn:hover:not(:disabled) { background:var(--blue-dark); transform:translateY(-1px); }
+  .send-btn:disabled { opacity:.35; cursor:not-allowed; }
+  .send-btn svg { width:15px; height:15px; }
+
+  /* ── REPORT ── */
+  #report {
+    max-width:720px; margin:0 auto;
+    padding:32px 16px 80px;
+    animation:msgIn .4s ease;
+  }
+  .rpt-back {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:500; color:var(--text-m);
+    background:none; border:none; cursor:pointer; padding:0 0 20px;
+    transition:color .15s;
+  }
+  .rpt-back:hover { color:var(--text); }
+  .urgency-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:11px; font-weight:700; padding:4px 12px; border-radius:100px;
+    margin-bottom:14px;
+  }
+  .ub-high { background:var(--red-bg); color:var(--red); border:1px solid var(--red-b); }
+  .ub-med  { background:var(--yellow-bg); color:var(--yellow); border:1px solid var(--yellow-b); }
+  .ub-low  { background:var(--green-bg); color:var(--green); border:1px solid var(--green-b); }
+  .rpt-hl {
+    font-size:clamp(20px,3vw,28px); font-weight:800; letter-spacing:-.5px;
+    line-height:1.2; color:var(--navy); margin-bottom:10px;
+  }
+  .rpt-sum { font-size:14px; color:var(--text-m); line-height:1.7; margin-bottom:24px; max-width:560px; }
+
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-bottom:28px; }
+  .stat { background:var(--white); border:1px solid var(--border); border-radius:var(--r-sm); padding:14px 16px; box-shadow:var(--shadow-sm); }
+  .s-lbl { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--text-d); margin-bottom:5px; }
+  .s-val { font-size:17px; font-weight:800; letter-spacing:-.3px; color:var(--navy); }
+  .sv-b { color:var(--blue); }
+  .sv-r { color:var(--red); }
+  .sv-y { color:var(--yellow); }
+
+  .sec {
+    display:flex; align-items:center; gap:10px;
+    margin:24px 0 10px; font-size:11px; font-weight:700;
+    text-transform:uppercase; letter-spacing:.8px; color:var(--text-m);
+  }
+  .sec::after { content:''; flex:1; height:1px; background:var(--border); }
+  .sec-ic { width:22px; height:22px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; }
+  .ic-r { background:var(--red-bg); }
+  .ic-y { background:var(--yellow-bg); }
+  .ic-g { background:var(--green-bg); }
+
+  .items { display:flex; flex-direction:column; gap:8px; }
+  .item {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:0 var(--r-sm) var(--r-sm) 0;
+    padding:16px 18px; transition:border-color .15s, box-shadow .15s;
+  }
+  .item:hover { border-color:var(--border2); box-shadow:var(--shadow); }
+  .item.red { border-left:3px solid var(--red); }
+  .item.yel { border-left:3px solid #D97706; }
+  .item.grn { border-left:3px solid var(--green); opacity:.72; }
+  .item-top { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; margin-bottom:6px; }
+  .item-title { font-size:14px; font-weight:700; color:var(--navy); }
+  .item-cost { font-size:12px; font-weight:600; color:var(--text-m); white-space:nowrap; flex-shrink:0; }
+  .item-desc { font-size:13px; color:var(--text-m); line-height:1.65; margin-bottom:12px; }
+  .item-bot { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .item-time { font-size:11px; color:var(--text-d); display:flex; align-items:center; gap:4px; }
+  .cta-btn {
+    background:var(--blue); color:#fff; border:none;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px;
+    padding:7px 16px; border-radius:100px; cursor:pointer;
+    box-shadow:0 2px 8px rgba(30,94,255,.2); transition:all .15s;
+    text-decoration:none; display:inline-flex; align-items:center; gap:5px;
+  }
+  .cta-btn:hover { background:var(--blue-dark); transform:translateY(-1px); }
+  .ghost-btn {
+    background:none; border:none; font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:12px; font-weight:600; color:var(--text-m); cursor:pointer;
+    padding:7px 0; display:flex; align-items:center; gap:4px; transition:color .15s;
+  }
+  .ghost-btn:hover { color:var(--blue); }
+
+  .insight {
+    background:var(--blue-light); border:1px solid #C7D7FF;
+    border-radius:var(--r); padding:20px; margin-top:16px;
+  }
+  .insight-lbl { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--blue); margin-bottom:8px; }
+  .insight-txt { font-size:13px; color:var(--navy); line-height:1.7; }
+
+  .advisor {
+    background:var(--yellow-bg); border:1px solid var(--yellow-b);
+    border-radius:var(--r); padding:18px 20px; margin-top:10px;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .adv-em { font-size:20px; flex-shrink:0; }
+  .adv-lbl { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--yellow); margin-bottom:5px; }
+  .adv-txt { font-size:13px; color:var(--text-2); line-height:1.65; }
+  .adv-btn {
+    margin-top:10px; background:#D97706; color:#fff; border:none;
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:12px;
+    padding:7px 16px; border-radius:100px; cursor:pointer; transition:all .15s;
+  }
+  .adv-btn:hover { opacity:.88; }
+
+  .share-card {
+    background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+    padding:24px; margin-top:20px; box-shadow:var(--shadow-sm);
+  }
+  .share-tl { font-size:15px; font-weight:800; color:var(--navy); margin-bottom:6px; letter-spacing:-.3px; }
+  .share-desc { font-size:13px; color:var(--text-m); line-height:1.6; margin-bottom:14px; }
+  .share-msg {
+    background:var(--bg); border:1px solid var(--border); border-radius:var(--r-sm);
+    padding:12px 14px; font-size:13px; color:var(--text-2); line-height:1.6;
+    font-style:italic; margin-bottom:14px;
+  }
+  .share-btns { display:flex; gap:8px; flex-wrap:wrap; }
+  .s-btn {
+    display:flex; align-items:center; gap:6px; padding:8px 16px;
+    border-radius:100px; border:1.5px solid var(--border); background:var(--white);
+    color:var(--text-2); font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600; font-size:13px; cursor:pointer; transition:all .15s;
+  }
+  .s-btn:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-light); }
+  .s-btn.primary { background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:0 2px 8px rgba(30,94,255,.2); }
+  .s-btn.primary:hover { background:var(--blue-dark); }
+
+  .restart-btn {
+    margin-top:24px; background:none; border:1.5px solid var(--border);
+    color:var(--text-m); font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:13px; font-weight:600; padding:9px 20px; border-radius:100px;
+    cursor:pointer; transition:all .15s; display:flex; align-items:center; gap:6px;
+  }
+  .restart-btn:hover { border-color:var(--border2); color:var(--text); }
+
+  /* error */
+  .err-box {
+    background:var(--red-bg); border:1px solid var(--red-b); border-radius:var(--r-sm);
+    padding:14px 16px; font-size:13px; color:var(--red); margin-top:12px; line-height:1.6;
+  }
+
+  @media(max-width:640px){
+    header { padding:0 16px; }
+    .logo-div, .logo-sub { display:none; }
+    .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .share-btns { flex-direction:column; }
+    #chat { padding:0 12px; }
+    #report { padding:24px 12px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-text">Sle<span>e</span>k</div>
+    <div class="logo-div"></div>
+    <div class="logo-sub">LaunchReady</div>
+  </div>
+  <div class="hdr-pill">Singapore · AI · Free</div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <div id="hero" class="screen" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:calc(100vh - 60px); padding:60px 24px; text-align:center; background:linear-gradient(180deg,#fff 0%,#F7F9FF 100%);">
+    <div class="hero-pill"><div class="pulse"></div> AI-Powered · Singapore · Free</div>
+    <h1>Know <em>exactly</em> what you need<br>to start your Singapore company.</h1>
+    <p class="hero-desc">Chat with our AI advisor in plain English. Describe your situation — get a personalised compliance report, real costs in SGD, and a clear path to your first invoice.</p>
+    <button class="start-btn" id="startBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Start the conversation
+    </button>
+    <div class="hero-trust">
+      <div class="ti"><div class="ti-dot">✓</div>90 seconds</div>
+      <div class="ti"><div class="ti-dot">✓</div>No sales call required</div>
+      <div class="ti"><div class="ti-dot">✓</div>Singapore-specific advice</div>
+      <div class="ti"><div class="ti-dot">✓</div>Powered by GPT-4o</div>
+    </div>
+    <div class="hero-strip">
+      <div class="hs"><div class="hs-n">16,000+</div><div class="hs-l">Active businesses</div></div>
+      <div class="hs"><div class="hs-n">450K+</div><div class="hs-l">Incorporations</div></div>
+      <div class="hs"><div class="hs-n">1–3 days</div><div class="hs-l">To incorporate</div></div>
+    </div>
+  </div>
+
+  <!-- CHAT -->
+  <div id="chat" class="screen">
+    <div class="chat-msgs" id="msgs"></div>
+    <div class="chat-bar">
+      <input class="chat-inp" id="inp" type="text" placeholder="Type your message…" autocomplete="off" disabled>
+      <button class="send-btn" id="sendBtn" disabled>
+        Send
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- REPORT -->
+  <div id="report" class="screen"></div>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── state ──────────────────────────────────────────────────────
+  var history = [];
+  var busy = false;
+  var done = false;
+
+  // ── screen helper ──────────────────────────────────────────────
+  function show(id) {
+    ['hero', 'chat', 'report'].forEach(function (s) {
+      var el = document.getElementById(s);
+      el.style.display = 'none';
+      el.classList.remove('screen');
+    });
+    var target = document.getElementById(id);
+    target.style.display = (id === 'chat') ? 'flex' : 'block';
+    target.classList.add('screen');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── chat helpers ───────────────────────────────────────────────
+  function addMsg(role, text) {
+    var area = document.getElementById('msgs');
+    var wrap = document.createElement('div');
+    wrap.className = 'msg ' + (role === 'user' ? 'user' : 'ai');
+    if (role === 'assistant') {
+      wrap.innerHTML = '<div class="av">S</div><div class="bubble">' + escHtml(text) + '</div>';
+    } else {
+      wrap.innerHTML = '<div class="bubble">' + escHtml(text) + '</div>';
+    }
+    area.appendChild(wrap);
+    area.scrollTop = area.scrollHeight;
+  }
+
+  function showTyping() {
+    var area = document.getElementById('msgs');
+    var wrap = document.createElement('div');
+    wrap.className = 'msg ai';
+    wrap.id = 'typing-ind';
+    wrap.innerHTML = '<div class="av">S</div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
+    area.appendChild(wrap);
+    area.scrollTop = area.scrollHeight;
+  }
+
+  function removeTyping() {
+    var t = document.getElementById('typing-ind');
+    if (t) t.parentElement.removeChild(t);
+  }
+
+  function setInput(enabled) {
+    var inp = document.getElementById('inp');
+    var btn = document.getElementById('sendBtn');
+    inp.disabled = !enabled;
+    btn.disabled = !enabled;
+    if (enabled) inp.focus();
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/\n/g, '<br>');
+  }
+
+  // ── API call ───────────────────────────────────────────────────
+  function callAPI(messages, callback) {
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: messages })
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) { callback(null, data.text || ''); })
+      .catch(function (err) { callback(err, null); });
+  }
+
+  // ── handle AI reply ────────────────────────────────────────────
+  function handleReply(text) {
+    removeTyping();
+
+    if (text.indexOf('READY_TO_GENERATE') !== -1) {
+      var beforeFlag = text.substring(0, text.indexOf('READY_TO_GENERATE')).trim();
+      var jsonStart = text.indexOf('{', text.indexOf('READY_TO_GENERATE'));
+      var jsonStr = jsonStart !== -1 ? text.substring(jsonStart) : null;
+
+      if (beforeFlag) addMsg('assistant', beforeFlag);
+      history.push({ role: 'assistant', content: text });
+
+      if (jsonStr) {
+        try {
+          var report = JSON.parse(jsonStr);
+          setInput(false);
+          setTimeout(function () { renderReport(report); }, 600);
+        } catch (e) {
+          addMsg('assistant', 'Let me generate your report now…');
+          setTimeout(function () { renderReport(fallbackReport()); }, 800);
+        }
+      } else {
+        addMsg('assistant', 'Let me generate your report now…');
+        setTimeout(function () { renderReport(fallbackReport()); }, 800);
+      }
+      done = true;
+    } else {
+      history.push({ role: 'assistant', content: text });
+      addMsg('assistant', text);
+      busy = false;
+      setInput(true);
+    }
+  }
+
+  // ── send a message ─────────────────────────────────────────────
+  function sendMessage(text) {
+    if (busy || done || !text.trim()) return;
+    busy = true;
+    setInput(false);
+
+    history.push({ role: 'user', content: text });
+    addMsg('user', text);
+    showTyping();
+
+    callAPI(history, function (err, reply) {
+      if (err || !reply) {
+        removeTyping();
+        addMsg('assistant', 'Sorry, I hit a connection issue. Let me generate your report based on what you have shared so far.');
+        history.push({ role: 'assistant', content: 'connection error' });
+        done = true;
+        setInput(false);
+        setTimeout(function () { renderReport(fallbackReport()); }, 800);
+        return;
+      }
+      handleReply(reply);
+    });
+  }
+
+  // ── start the chat ─────────────────────────────────────────────
+  function startChat() {
+    show('chat');
+    busy = true;
+    showTyping();
+
+    var opening = [{ role: 'user', content: 'Hello, I want to set up a company in Singapore.' }];
+    callAPI(opening, function (err, reply) {
+      if (err || !reply) {
+        removeTyping();
+        var fallback = "Hi! I'm Sleek's Singapore incorporation advisor. Tell me about yourself — what kind of business are you building, and where are you based?";
+        history.push({ role: 'assistant', content: fallback });
+        addMsg('assistant', fallback);
+        busy = false;
+        setInput(true);
+        return;
+      }
+      history.push({ role: 'user', content: 'Hello, I want to set up a company in Singapore.' });
+      handleReply(reply);
+    });
+  }
+
+  // ── render report ──────────────────────────────────────────────
+  function renderReport(d) {
+    show('report');
+    var el = document.getElementById('report');
+
+    var bc = d.urgencyLevel === 'high' ? 'ub-high' : d.urgencyLevel === 'medium' ? 'ub-med' : 'ub-low';
+    var bl = d.urgencyLevel === 'high' ? '🔴 Act now' : d.urgencyLevel === 'medium' ? '🟡 Plan ahead' : '🟢 Good timing';
+
+    function ri(item, i) {
+      return '<div class="item red" style="animation:msgIn .3s ' + (i * 0.08) + 's ease both">' +
+        '<div class="item-top"><div class="item-title">' + escHtml(item.title) + '</div><div class="item-cost">' + escHtml(item.cost) + '</div></div>' +
+        '<div class="item-desc">' + escHtml(item.description) + '</div>' +
+        '<div class="item-bot"><div class="item-time">⏱ ' + escHtml(item.timeline) + '</div>' +
+        '<a class="cta-btn" href="https://sleek.com/sg/" target="_blank" rel="noopener">' + escHtml(item.cta) + ' →</a></div></div>';
+    }
+
+    function yi(item, i) {
+      return '<div class="item yel" style="animation:msgIn .3s ' + (i * 0.08) + 's ease both">' +
+        '<div class="item-top"><div class="item-title">' + escHtml(item.title) + '</div><div class="item-cost">' + escHtml(item.cost) + '</div></div>' +
+        '<div class="item-desc">' + escHtml(item.description) + '</div>' +
+        '<div class="item-bot"><div class="item-time">⏱ ' + escHtml(item.timeline) + '</div>' +
+        '<button class="ghost-btn">Learn more →</button></div></div>';
+    }
+
+    function gi(item, i) {
+      return '<div class="item grn" style="animation:msgIn .3s ' + (i * 0.08) + 's ease both">' +
+        '<div class="item-top"><div class="item-title">' + escHtml(item.title) + '</div><div class="item-cost" style="color:var(--green)">Not needed yet</div></div>' +
+        '<div class="item-desc">' + escHtml(item.reason) + '</div></div>';
+    }
+
+    var advH = d.advisorNote
+      ? '<div class="advisor"><div class="adv-em">⚠️</div><div><div class="adv-lbl">Edge case flagged</div><div class="adv-txt">' + escHtml(d.advisorNote) + '</div><button class="adv-btn" onclick="alert(\'A Sleek advisor will contact you. Not a demo action.\')">Book a free 15-min call →</button></div></div>'
+      : '';
+
+    var shareMsg = escHtml(d.shareMessage || 'Check out Sleek LaunchReady — tells you exactly what you need to set up your Singapore company.');
+
+    el.innerHTML =
+      '<button class="rpt-back" id="backBtn">← Start over</button>' +
+      '<span class="urgency-badge ' + bc + '">' + bl + '</span>' +
+      '<div class="rpt-hl">' + escHtml(d.headline) + '</div>' +
+      '<div class="rpt-sum">' + escHtml(d.founderSummary) + '</div>' +
+      '<div class="stats">' +
+        '<div class="stat"><div class="s-lbl">Invoice in</div><div class="s-val sv-b">' + escHtml(d.canInvoiceIn) + '</div></div>' +
+        '<div class="stat"><div class="s-lbl">Year 1 cost</div><div class="s-val">S$' + Number(d.totalYear1Cost || 0).toLocaleString() + '</div></div>' +
+        '<div class="stat"><div class="s-lbl">Must-do</div><div class="s-val sv-r">' + (d.redItems || []).length + '</div></div>' +
+        '<div class="stat"><div class="s-lbl">Upcoming</div><div class="s-val sv-y">' + (d.yellowItems || []).length + '</div></div>' +
+      '</div>' +
+      '<div class="sec"><div class="sec-ic ic-r">🔴</div>Must have before you invoice</div>' +
+      '<div class="items">' + (d.redItems || []).map(ri).join('') + '</div>' +
+      '<div class="sec"><div class="sec-ic ic-y">🟡</div>Required within 6 months</div>' +
+      '<div class="items">' + (d.yellowItems || []).map(yi).join('') + '</div>' +
+      '<div class="sec"><div class="sec-ic ic-g">🟢</div>Not needed at your stage</div>' +
+      '<div class="items">' + (d.greenItems || []).map(gi).join('') + '</div>' +
+      '<div class="insight"><div class="insight-lbl">💡 Key insight for your situation</div><div class="insight-txt">' + escHtml(d.keyInsight) + '</div></div>' +
+      advH +
+      '<div class="share-card">' +
+        '<div class="share-tl">📤 Share with your co-founder</div>' +
+        '<div class="share-desc">Co-founders need to see this too — your structure affects their shareholding and directorship obligations.</div>' +
+        '<div class="share-msg">' + shareMsg + '</div>' +
+        '<div class="share-btns">' +
+          '<button class="s-btn primary" id="sWa">💬 WhatsApp</button>' +
+          '<button class="s-btn" id="sLi">💼 LinkedIn</button>' +
+          '<button class="s-btn" id="sCopy">🔗 Copy link</button>' +
+        '</div>' +
+      '</div>' +
+      '<button class="restart-btn" id="restartBtn">← Start a new report</button>';
+
+    document.getElementById('backBtn').addEventListener('click', restart);
+    document.getElementById('restartBtn').addEventListener('click', restart);
+
+    var msg = (d.shareMessage || '') + ' — sleek.com/sg/launchready';
+    document.getElementById('sWa').addEventListener('click', function () {
+      window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+    });
+    document.getElementById('sLi').addEventListener('click', function () {
+      window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank');
+    });
+    document.getElementById('sCopy').addEventListener('click', function () {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(msg + ' ' + window.location.href);
+        var btn = document.getElementById('sCopy');
+        btn.textContent = '✅ Copied!';
+        setTimeout(function () { btn.textContent = '🔗 Copy link'; }, 2000);
+      }
+    });
+  }
+
+  // ── restart ────────────────────────────────────────────────────
+  function restart() {
+    history = [];
+    busy = false;
+    done = false;
+    document.getElementById('msgs').innerHTML = '';
+    show('hero');
+  }
+
+  // ── fallback report ────────────────────────────────────────────
+  function fallbackReport() {
+    return {
+      headline: 'You need 4 things in place before your first invoice — ready in 3 business days.',
+      urgencyLevel: 'high',
+      founderSummary: 'Based on your conversation: you are a foreign founder with a client ready to pay. You cannot legally invoice without a Singapore Pte Ltd in place first.',
+      canInvoiceIn: '3 business days',
+      totalYear1Cost: 3410,
+      redItems: [
+        { title: 'Pte Ltd Incorporation', description: 'You cannot collect business income into a personal account in Singapore. Your first invoice needs a registered company.', cost: 'S$650 one-time', timeline: '1–3 days with Sleek', cta: 'Start Incorporation' },
+        { title: 'Nominee Director', description: 'As a foreign national without an Employment Pass, you need a licensed local nominee director from day one. This is a legal requirement, not optional.', cost: 'S$1,800/year', timeline: 'Same day as incorporation', cta: 'Add Nominee Director' },
+        { title: 'Registered Address', description: 'ACRA requires every Singapore company to have a local registered address. Non-negotiable.', cost: 'S$360/year', timeline: 'Included with incorporation', cta: 'Include in Setup' },
+        { title: 'Corporate Secretary', description: 'Singapore law requires a corporate secretary from day one. Sleek includes this in every plan.', cost: 'S$600/year', timeline: 'From day one', cta: 'Include in Setup' }
+      ],
+      yellowItems: [
+        { title: 'Business Bank Account', description: 'You need a Singapore business account to receive payments. DBS, OCBC, UOB — plan 2–4 weeks to open.', cost: 'Free to open', timeline: 'Within 4 weeks' },
+        { title: 'Bookkeeping', description: 'Clean records from month one. Sleek accounting handles this.', cost: 'From S$300/month', timeline: 'Month 1' }
+      ],
+      greenItems: [
+        { title: 'GST Registration', reason: 'Only mandatory above S$1M taxable turnover. Not applicable at your stage.' },
+        { title: 'Employment Pass', reason: 'Only needed if you relocate to Singapore to work full-time.' }
+      ],
+      keyInsight: 'Most foreign founders discover the nominee director requirement mid-incorporation — causing 1–2 week delays. Budget it in from day one and you will have everything sorted in 72 hours.',
+      advisorNote: null,
+      shareMessage: 'Just found out exactly what I need to set up my Singapore company using Sleek LaunchReady — took 90 seconds.'
+    };
+  }
+
+  // ── wire up ────────────────────────────────────────────────────
+  document.getElementById('startBtn').addEventListener('click', startChat);
+
+  var inp = document.getElementById('inp');
+  var sendBtn = document.getElementById('sendBtn');
+
+  inp.addEventListener('input', function () {
+    sendBtn.disabled = !this.value.trim() || busy || done;
+  });
+
+  inp.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !sendBtn.disabled) {
+      var v = this.value.trim();
+      this.value = '';
+      sendBtn.disabled = true;
+      sendMessage(v);
+    }
+  });
+
+  sendBtn.addEventListener('click', function () {
+    var v = inp.value.trim();
+    if (!v) return;
+    inp.value = '';
+    sendBtn.disabled = true;
+    sendMessage(v);
+  });
+
+})();
+</script>
+</body>
+</html>

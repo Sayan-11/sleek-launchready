@@ -1,0 +1,9 @@
+{
+  "name": "sleek-launchready",
+  "version": "1.0.0",
+  "description": "Sleek LaunchReady — AI-powered Singapore incorporation advisor",
+  "devDependencies": {
+    "@netlify/functions": "^2.0.0",
+    "typescript": "^5.0.0"
+  }
+}
