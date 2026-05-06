@@ -445,6 +445,18 @@ function handleReply(text){
   }
 }
 
+function showError(msg){
+  removeTyping();
+  var area=document.getElementById('msgs');
+  var wrap=document.createElement('div');
+  wrap.style.cssText='background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:14px 16px;font-size:13px;color:#DC2626;line-height:1.6;margin:4px 0;';
+  wrap.innerHTML='⚠️ <b>Connection error</b><br>'+esc(msg)+'<br><br>'+
+    '<span style="color:#6B7A99;font-size:12px;">Make sure you have deployed to Netlify with your <code style="background:#FEE2E2;padding:1px 5px;border-radius:4px;">OPENAI_API_KEY</code> environment variable set, or run <code style="background:#FEE2E2;padding:1px 5px;border-radius:4px;">netlify dev</code> locally.</span>';
+  area.appendChild(wrap);
+  area.scrollTop=area.scrollHeight;
+  busy=false;done=false;setInput(true);
+}
+
 function sendMessage(text){
   if(busy||done||!text.trim()) return;
   busy=true;
@@ -455,11 +467,8 @@ function sendMessage(text){
   showTyping();
   callAPI(history,function(err,reply){
     if(err||!reply){
-      removeTyping();
-      addMsg('assistant',"Sorry, I hit a connection issue. Generating your report from what you've shared so far.");
-      history.push({role:'assistant',content:'error'});
-      done=true;pendingReport=fallback();
-      setTimeout(function(){showGate();},600);
+      showError('Could not reach /api/chat. The AI is not connected.');
+      history.pop();
       return;
     }
     handleReply(reply);
@@ -471,14 +480,22 @@ function startChat(){
   callAPI([{role:'user',content:'Hello, I want to set up a company in Singapore.'}],function(err,reply){
     removeTyping();
     if(err||!reply){
-      var fb="Hey! 👋 Great that you're thinking about Singapore — it's honestly one of the best places to set up. I'm your Sleek advisor; think of me as that friend who knows Singapore corporate law inside out.\n\nTell me a bit about yourself — what are you building, and where are you based right now?";
-      history.push({role:'assistant',content:fb});
-      addMsg('assistant',fb);
-    } else {
-      history.push({role:'user',content:'Hello, I want to set up a company in Singapore.'});
-      history.push({role:'assistant',content:reply});
-      addMsg('assistant',reply);
+      var errWrap=document.createElement('div');
+      errWrap.style.cssText='background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:16px;font-size:13px;color:#DC2626;line-height:1.7;';
+      errWrap.innerHTML='⚠️ <b>API not connected</b><br>'+
+        'The chat is trying to reach <code style="background:#FEE2E2;padding:1px 5px;border-radius:4px;">/api/chat</code> but it doesn\'t exist yet — this only works when deployed on Netlify with your OpenAI key.<br><br>'+
+        '<b style="color:#374151;">To fix this:</b><br>'+
+        '<span style="color:#374151;">1. Push this project to GitHub<br>'+
+        '2. Connect to Netlify and deploy<br>'+
+        '3. Add <code style="background:#FEE2E2;padding:1px 5px;border-radius:4px;">OPENAI_API_KEY</code> in Site settings → Environment variables<br>'+
+        '4. Redeploy — then the AI will actually respond</span>';
+      document.getElementById('msgs').appendChild(errWrap);
+      busy=false;setInput(false);
+      return;
     }
+    history.push({role:'user',content:'Hello, I want to set up a company in Singapore.'});
+    history.push({role:'assistant',content:reply});
+    addMsg('assistant',reply);
     busy=false;setInput(true);buildSugs();
   });
 }
@@ -491,7 +508,7 @@ document.getElementById('gateSubmit').addEventListener('click',function(){
     document.getElementById('gateEmail').focus();return;
   }
   hideGate();
-  animateLoader(function(){renderReport(pendingReport||fallback());});
+  animateLoader(function(){renderReport(pendingReport);});
 });
 document.getElementById('gateEmail').addEventListener('keydown',function(e){
   if(e.key==='Enter') document.getElementById('gateSubmit').click();
