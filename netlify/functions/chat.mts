@@ -26,8 +26,8 @@ SINGAPORE COMPLIANCE FACTS (accurate 2025 rates, do not deviate):
 - Business bank account (DBS/OCBC/UOB): 2-4 weeks to open
 - Employment Pass for foreign founders relocating: S$105 fee, 3-8 weeks processing
 
-When you say READY_TO_GENERATE, output ONLY valid JSON immediately after (no markdown fences, no backticks, no preamble):
-{"headline":"one punchy sentence about their situation and what they must do","urgencyLevel":"high|medium|low","founderSummary":"2 sentences reflecting their exact situation back, making them feel understood","canInvoiceIn":"e.g. 3 business days","totalYear1Cost":0,"redItems":[{"title":"","description":"specific to their situation","cost":"S$X","timeline":"X days/weeks","cta":"Action label"}],"yellowItems":[{"title":"","description":"","cost":"S$X","timeline":"Within X months"}],"greenItems":[{"title":"","reason":"why not needed yet"}],"keyInsight":"one sharp insight most founders in their situation miss","advisorNote":null,"shareMessage":"pre-written message for their co-founder or network"}`;
+When you say READY_TO_GENERATE, output ONLY valid JSON immediately after (no markdown fences, no backticks, no preamble, no trailing text). Keep all string values concise — under 120 characters each. The JSON must be complete and valid in a single response:
+{"headline":"one punchy sentence","urgencyLevel":"high|medium|low","founderSummary":"2 sentences max","canInvoiceIn":"e.g. 3 business days","totalYear1Cost":0,"redItems":[{"title":"","description":"specific to their situation, under 120 chars","cost":"S$X","timeline":"X days","cta":"Action label"}],"yellowItems":[{"title":"","description":"","cost":"S$X","timeline":"Within X months"}],"greenItems":[{"title":"","reason":"why not needed"}],"keyInsight":"one sharp insight under 150 chars","advisorNote":null,"shareMessage":"short pre-written message under 120 chars"}`;
 
 export default async (req: Request, context: Context) => {
   if (req.method !== "POST") {
@@ -74,7 +74,7 @@ export default async (req: Request, context: Context) => {
           ...messages,
         ],
         temperature: 0.4,
-        max_tokens: 1500,
+        max_tokens: 2500,
       }),
     });
 
